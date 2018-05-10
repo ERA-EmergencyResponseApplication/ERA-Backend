@@ -6,17 +6,17 @@
     "validateUpsert": true
   },
   "properties": {
-    "Name": {
+    "name": {
       "type": "string",
       "required": true
     },
-    "Lat": {
+    "lat": {
       "type": "geopoint"
     },
-    "Lon": {
+    "lon": {
       "type": "geopoint"
     },
-    "Description": {
+    "description": {
       "type": "string"
     }
   },
@@ -24,6 +24,16 @@
   "relations": {
     "subscribers": {
       "type": "hasAndBelongsToMany",
+      "model": "Responder",
+      "foreignKey": ""
+    },
+    "emergencies": {
+      "type": "hasMany",
+      "model": "Emergency",
+      "foreignKey": ""
+    },
+    "owner": {
+      "type": "hasOne",
       "model": "Responder",
       "foreignKey": ""
     }
