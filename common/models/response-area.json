@@ -1,0 +1,33 @@
+{
+  "name": "ResponseArea",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Lat": {
+      "type": "geopoint"
+    },
+    "Lon": {
+      "type": "geopoint"
+    },
+    "Description": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "subscribers": {
+      "type": "hasAndBelongsToMany",
+      "model": "Responder",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

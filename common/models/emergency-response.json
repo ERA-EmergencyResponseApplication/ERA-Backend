@@ -1,0 +1,23 @@
+{
+  "name": "EmergencyResponse",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "Status": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "responder": {
+      "type": "hasOne",
+      "model": "Responder",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

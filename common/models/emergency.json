@@ -1,0 +1,41 @@
+{
+  "name": "Emergency",
+  "plural": "Emergencies",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "type": {
+      "type": "string",
+      "required": true
+    },
+    "lat": {
+      "type": "geopoint"
+    },
+    "lon": {
+      "type": "geopoint"
+    },
+    "location_description": {
+      "type": "string"
+    },
+    "start_datetime": {
+      "type": "date",
+      "required": true
+    },
+    "end_datetime": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "responseArea": {
+      "type": "belongsTo",
+      "model": "ResponseArea",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
