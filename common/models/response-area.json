@@ -23,9 +23,16 @@
   "validations": [],
   "relations": {
     "subscribers": {
-      "type": "hasAndBelongsToMany",
+      "type": "hasMany",
       "model": "Responder",
-      "foreignKey": ""
+      "foreignKey": "",
+      "through": "Subscription"
+    },
+    "admins": {
+      "type": "hasMany",
+      "model": "Responder",
+      "foreignKey": "",
+      "through": "Admins"
     },
     "emergencies": {
       "type": "hasMany",
@@ -33,7 +40,7 @@
       "foreignKey": ""
     },
     "owner": {
-      "type": "hasOne",
+      "type": "belongsTo",
       "model": "Responder",
       "foreignKey": ""
     }

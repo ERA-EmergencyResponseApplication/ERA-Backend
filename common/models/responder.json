@@ -6,7 +6,7 @@
     "validateUpsert": true
   },
   "properties": {
-    "cell_number": {
+    "cellNumber": {
       "type": "string",
       "required": true
     }
@@ -14,9 +14,16 @@
   "validations": [],
   "relations": {
     "subscriptions": {
-      "type": "hasAndBelongsToMany",
+      "type": "hasMany",
       "model": "ResponseArea",
-      "foreignKey": ""
+      "foreignKey": "",
+      "through": "Subscription"
+    },
+    "adminOf": {
+      "type": "hasMany",
+      "model": "Admins",
+      "foreignKey": "",
+      "through": "Admins"
     }
   },
   "acls": [],

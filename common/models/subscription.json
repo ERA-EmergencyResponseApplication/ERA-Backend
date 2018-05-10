@@ -1,25 +1,21 @@
 {
-  "name": "EmergencyResponse",
+  "name": "Subscription",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-    "status": {
-      "type": "string"
-    }
-  },
+  "properties": {},
   "validations": [],
   "relations": {
-    "emergency": {
-      "type": "belongsTo",
-      "model": "Emergency",
-      "foreignKey": ""
-    },
     "responder": {
       "type": "belongsTo",
       "model": "Responder",
+      "foreignKey": ""
+    },
+    "responseArea": {
+      "type": "belongsTo",
+      "model": "ResponseArea",
       "foreignKey": ""
     }
   },

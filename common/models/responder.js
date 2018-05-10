@@ -27,4 +27,15 @@ module.exports = function(Responder) {
   Responder.disableRemoteMethodByName('prototype.__create__accessTokens');
   Responder.disableRemoteMethodByName('prototype.__delete__accessTokens');
 
+  Responder.disableRemoteMethodByName('prototype.__findById__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__updateById__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__destroyById__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__count__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__delete__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__get__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__create__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__get__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__exists__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__link__adminOf');
+  Responder.disableRemoteMethodByName('prototype.__unlink__adminOf');
 };

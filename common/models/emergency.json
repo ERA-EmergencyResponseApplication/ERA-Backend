@@ -30,14 +30,14 @@
   },
   "validations": [],
   "relations": {
-    "responseArea": {
-      "type": "belongsTo",
-      "model": "ResponseArea",
-      "foreignKey": ""
-    },
     "emergencyResponses": {
       "type": "hasMany",
       "model": "EmergencyResponse",
+      "foreignKey": ""
+    },
+    "creator": {
+      "type": "belongsTo",
+      "model": "Responder",
       "foreignKey": ""
     }
   },
