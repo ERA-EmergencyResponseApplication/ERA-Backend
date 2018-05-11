@@ -7,7 +7,18 @@
   },
   "properties": {},
   "validations": [],
-  "relations": {},
+  "relations": {
+    "responder": {
+      "type": "belongsTo",
+      "model": "Responder",
+      "foreignKey": ""
+    },
+    "responseArea": {
+      "type": "belongsTo",
+      "model": "ResponseArea",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

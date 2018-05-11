@@ -9,6 +9,12 @@
     "cellNumber": {
       "type": "string",
       "required": true
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
     }
   },
   "validations": [],
