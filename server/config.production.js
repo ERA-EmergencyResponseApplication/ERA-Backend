@@ -19,7 +19,7 @@ module.exports = {
       'extended': true,
       'limit': '100kb',
     },
-    'cors': true,
+    'cors': false,
   },
   'googleAppKey': process.env.GOOGLE_API_KEY,
 };
