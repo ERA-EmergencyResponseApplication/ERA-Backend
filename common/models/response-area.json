@@ -10,13 +10,22 @@
       "type": "string",
       "required": true
     },
-    "lat": {
-      "type": "geopoint"
-    },
-    "lon": {
-      "type": "geopoint"
-    },
     "description": {
+      "type": "string"
+    },
+    "coordinates": {
+      "type": "geopoint"
+    },
+    "address": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
       "type": "string"
     }
   },
