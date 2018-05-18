@@ -6,7 +6,6 @@ module.exports = function(Responder) {
   Responder.disableRemoteMethodByName('upsertWithWhere');
   Responder.disableRemoteMethodByName('findOne');
   Responder.disableRemoteMethodByName('updateAll');
-  Responder.disableRemoteMethodByName('replaceById');
   Responder.disableRemoteMethodByName('prototype.patchAttributes');
   Responder.disableRemoteMethodByName('createChangeStream');
 

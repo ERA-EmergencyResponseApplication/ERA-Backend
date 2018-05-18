@@ -11,6 +11,5 @@ module.exports = function(Emergency) {
   Emergency.disableRemoteMethodByName('createChangeStream');
   Emergency.disableRemoteMethodByName('prototype.__delete__emergencyResponses');
   Emergency.disableRemoteMethodByName('prototype.__findById__emergencyResponses');
-  Emergency.disableRemoteMethodByName('prototype.__updateById__emergencyResponses');
   Emergency.disableRemoteMethodByName('prototype.__destroyById__emergencyResponses');
 };
