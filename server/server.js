@@ -18,6 +18,18 @@ app.start = function() {
   });
 };
 
+app.middleware('initial', function logResponse(req, res, next) {
+  // install a listener for when the response is finished
+  res.on('finish', function() {
+    // the request was handled, print the log entry
+    console.log(req.connection.remoteAddress, req.method, req.originalUrl, res.statusCode);
+  });
+
+  // resume the routing pipeline,
+  // let other middleware to actually handle the request
+  next();
+});
+
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
 boot(app, __dirname, function(err) {
