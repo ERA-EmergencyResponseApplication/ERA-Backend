@@ -24,7 +24,6 @@ module.exports = function(ResponseArea) {
   ResponseArea.disableRemoteMethodByName('prototype.__get__admins');
 
   ResponseArea.disableRemoteMethodByName('prototype.__findById__emergencies');
-  ResponseArea.disableRemoteMethodByName('prototype.__updateById__emergencies');
   ResponseArea.disableRemoteMethodByName('prototype.__destroyById__emergencies');
   ResponseArea.disableRemoteMethodByName('prototype.__delete__emergencies');
   ResponseArea.disableRemoteMethodByName('prototype.__count__emergencies');

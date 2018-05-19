@@ -6,7 +6,6 @@ module.exports = function(Emergency) {
   Emergency.disableRemoteMethodByName('upsertWithWhere');
   Emergency.disableRemoteMethodByName('findOne');
   Emergency.disableRemoteMethodByName('updateAll');
-  Emergency.disableRemoteMethodByName('replaceById');
   Emergency.disableRemoteMethodByName('prototype.patchAttributes');
   Emergency.disableRemoteMethodByName('createChangeStream');
   Emergency.disableRemoteMethodByName('prototype.__delete__emergencyResponses');
