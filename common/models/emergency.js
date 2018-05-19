@@ -24,7 +24,6 @@ module.exports = function(Emergency) {
   Emergency.observe('after save', function newEmergency(ctx, next) {
     if (ctx.isNewInstance) {
       console.log('Sending Alert');
-      console.log(ctx.options);
       var Sub = Emergency.app.models.Subscription;
       Sub.find({where: {'responseArea': ctx.instance.responseAreaId}},
 
