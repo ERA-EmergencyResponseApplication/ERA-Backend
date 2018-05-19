@@ -13,8 +13,6 @@ module.exports = function(Emergency) {
   Emergency.disableRemoteMethodByName('prototype.__destroyById__emergencyResponses');
 
   Emergency.observe('before save', function newEmergencyInit(ctx, next) {
-    console.log(ctx);
-
     if (ctx.isNewInstance) {
       console.log('Creating new Emergency');
       ctx.instance.creatorId = ctx.options.accessToken.userId;
@@ -26,7 +24,7 @@ module.exports = function(Emergency) {
   Emergency.observe('after save', function newEmergency(ctx, next) {
     if (ctx.isNewInstance) {
       console.log('Sending Alert');
-
+      console.log(ctx.options);
       var Sub = Emergency.app.models.Subscription;
       Sub.find({where: {'responseArea': ctx.instance.responseAreaId}},
 
@@ -38,13 +36,24 @@ module.exports = function(Emergency) {
               function sendAlert(err, obj) {
                 var msg = 'Emergency Event: ' + ctx.instance.type +
                   ' https://era.brandoncodes.com/events/' + ctx.instance.id;
+                var Response = Emergency.app.models.EmergencyResponse;
 
+                if (err) {
+                  Response.create(
+                    {responderId: ctx.options.accessToken.userId,
+                      emergencyId: ctx.instance.id,
+                      status: 'Failed'});
+                } else {
+                  console.log(msg);
+                  Response.create(
+                    {responderId: ctx.options.accessToken.userId,
+                      emergencyId: ctx.instance.id,
+                      status: 'No Response'});
+                }
                 if (process.env.SEND_ALERTS == 'ACTIVE') {
                   Sender.send({type: 'sms', to: '+1' + obj.cellNumber,
                     from: '+18592872026', body: msg}, function(err, msg) {
-                    console.log(msg);
                   });
-
                 } else {
                   console.log('Test Sending Alert To: ' + obj.cellNumber);
                 }

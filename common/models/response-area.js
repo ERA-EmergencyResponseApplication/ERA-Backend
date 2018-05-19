@@ -27,5 +27,22 @@ module.exports = function(ResponseArea) {
   ResponseArea.disableRemoteMethodByName('prototype.__destroyById__emergencies');
   ResponseArea.disableRemoteMethodByName('prototype.__delete__emergencies');
   ResponseArea.disableRemoteMethodByName('prototype.__count__emergencies');
+  ResponseArea.observe('before save', function newResponseAreaInit(ctx, next) {
+    console.log(ctx.options.accessToken.userId);
+    if (ctx.isNewInstance) {
+      console.log('Creating new Response Area By: ' + ctx.options.accessToken.userId);
+      ctx.instance.ownerId = ctx.options.accessToken.userId;
+    }
+    next();
+  });
 
+  ResponseArea.observe('after save', function newResponseAreaInit(ctx, next) {
+    if (ctx.isNewInstance) {
+      ResponseArea.app.models.Subscription.create({
+        responderId: ctx.options.accessToken.userId,
+        responseAreaId: ctx.instance.id,
+      });
+    }
+    next();
+  });
 };
