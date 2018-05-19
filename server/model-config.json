@@ -59,5 +59,9 @@
   "Admins": {
     "dataSource": "db",
     "public": false
+  },
+  "Twilio": {
+    "dataSource": "twilio",
+    "public": false
   }
 }

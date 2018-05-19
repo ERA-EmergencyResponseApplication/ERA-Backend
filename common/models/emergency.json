@@ -18,8 +18,7 @@
       "type": "string"
     },
     "start_datetime": {
-      "type": "date",
-      "required": true
+      "type": "date"
     },
     "end_datetime": {
       "type": "date"
@@ -35,6 +34,11 @@
     "creator": {
       "type": "belongsTo",
       "model": "Responder",
+      "foreignKey": ""
+    },
+    "responseArea": {
+      "type": "belongsTo",
+      "model": "ResponseArea",
       "foreignKey": ""
     }
   },

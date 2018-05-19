@@ -10,4 +10,10 @@ module.exports = {
     name: process.env.DB_NAME,
     connector: 'mysql',
   },
+  twilio: {
+    name: 'twilio',
+    connector: 'loopback-connector-twilio',
+    accountSid: process.env.TWILIO_SID,
+    authToken: process.env.TWILIO_SECRET,
+  },
 };
