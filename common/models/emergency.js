@@ -39,10 +39,14 @@ module.exports = function(Emergency) {
               function sendAlert(err, obj) {
                 var msg = 'Emergency Event: ' + ctx.instance.type +
                   ' https://era.brandoncodes.com/events/' + ctx.instance.id;
-                Sender.send({type: 'sms', to: '+1' + obj.cellNumber,
-                  from: '+18592872026', body: msg}, function(err, msg) {
-                  console.log(msg);
-                });
+                if (process.env.SEND_ALERTS == 'ACTIVE') {
+                  Sender.send({type: 'sms', to: '+1' + obj.cellNumber,
+                    from: '+18592872026', body: msg}, function(err, msg) {
+                    console.log(msg);
+                  });
+                } else {
+                  console.log('Sending Alert To: ' + obj.cellNumber);
+                }
               });
           }
         });
