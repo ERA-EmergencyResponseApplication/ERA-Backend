@@ -26,35 +26,36 @@ module.exports = function(Emergency) {
       console.log('Sending Alert');
       var Sub = Emergency.app.models.Subscription;
       Sub.find({where: {'responseArea': ctx.instance.responseAreaId}},
-
         function result(err, obj) {
+
           var Usr = Emergency.app.models.Responder;
           var Sender = Emergency.app.models.Twilio;
+
           for (var i = 0; i < obj.length; i++) {
-            Usr.findOne({where: {'id': obj.responderId}},
-              function sendAlert(err, obj) {
+            Usr.findOne({where: {'id': obj[i].responderId}},
+              function sendAlert(err, usr) {
                 var msg = 'Emergency Event: ' + ctx.instance.type +
                   ' https://era.brandoncodes.com/events/' + ctx.instance.id;
                 var Response = Emergency.app.models.EmergencyResponse;
 
                 if (err) {
                   Response.create(
-                    {responderId: ctx.options.accessToken.userId,
+                    {responderId: usr.id,
                       emergencyId: ctx.instance.id,
                       status: 'Failed'});
                 } else {
-                  console.log(msg);
                   Response.create(
-                    {responderId: ctx.options.accessToken.userId,
+                    {responderId: usr.id,
                       emergencyId: ctx.instance.id,
                       status: 'No Response'});
-                }
-                if (process.env.SEND_ALERTS == 'ACTIVE') {
-                  Sender.send({type: 'sms', to: '+1' + obj.cellNumber,
-                    from: '+18592872026', body: msg}, function(err, msg) {
-                  });
-                } else {
-                  console.log('Test Sending Alert To: ' + obj.cellNumber);
+
+                  if (process.env.SEND_ALERTS === 'ACTIVE') {
+                    Sender.send({type: 'sms', to: '+1' + obj.cellNumber,
+                      from: '+18592872026', body: msg}, function(err, msg) {
+                    });
+                  } else {
+                    console.log('Test Sending Alert To: ' + obj.cellNumber);
+                  }
                 }
               });
           }
