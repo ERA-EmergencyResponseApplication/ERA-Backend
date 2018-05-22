@@ -1,0 +1,264 @@
+{
+  "variables": [],
+  "info": {
+    "name": "ERA-API",
+    "_postman_id": "8f68582e-46df-b755-a9e3-3b03fcf1eb82",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Account",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202 || responseCode.code === 200;",
+              "",
+              "var jsonData = JSON.parse(responseBody);",
+              "postman.setGlobalVariable(\"user_id\", jsonData.id);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "eraapi-test.brandoncodes.com/api/responders",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"cellNumber\":\"{{test_cellnumber}}\",\"email\":\"{{test_email}}\",\"password\":\"{{test_password}}\" }"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202 || responseCode.code === 200;",
+              "",
+              "var jsonData = JSON.parse(responseBody);",
+              "postman.setGlobalVariable(\"login_token\", jsonData.id);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "eraapi-test.brandoncodes.com/api/responders/login",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\":\"{{test_email}}\",\"password\":\"{{test_password}}\" }"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Create Response Area",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202 || responseCode.code === 200;",
+              "",
+              "var jsonData = JSON.parse(responseBody);",
+              "",
+              "tests[\"Name Field\"] = jsonData.name === \"Auto Created Test Response Area\";",
+              "tests[\"Description Field\"] = jsonData.description === \"Description\";",
+              "tests[\"Coordinates Fields\"] = jsonData.coordinates.lat === 1 && jsonData.coordinates.lng === -1;",
+              "tests[\"City Field\"] = jsonData.city === \"City\";",
+              "tests[\"State Field\"] = jsonData.state === \"State\";",
+              "tests[\"Zip Field\"] = jsonData.zip === \"45044\";",
+              "",
+              "postman.setGlobalVariable(\"response_area_id\", jsonData.id);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": {
+          "raw": "eraapi-test.brandoncodes.com/api/responseAreas?access_token={{login_token}}",
+          "host": [
+            "eraapi-test",
+            "brandoncodes",
+            "com"
+          ],
+          "path": [
+            "api",
+            "responseAreas"
+          ],
+          "query": [
+            {
+              "key": "access_token",
+              "value": "{{login_token}}",
+              "equals": true,
+              "description": ""
+            }
+          ],
+          "variable": []
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"name\": \"Auto Created Test Response Area\",\r\n  \"description\": \"Description\",\r\n  \"coordinates\": {\r\n    \"lat\": 1,\r\n    \"lng\": -1\r\n  },\r\n  \"address\": \"Address\",\r\n  \"city\": \"City\",\r\n  \"state\": \"State\",\r\n  \"zip\": \"45044\"\r\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Create Response Area No Token",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Successful POST request\"] = responseCode.code === 401"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "eraapi-test.brandoncodes.com/api/responseAreas",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Response Areas Public",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202 || responseCode.code === 200;"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": "eraapi-test.brandoncodes.com/api/responseAreas",
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "Create Emergency",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202 || responseCode.code === 200;",
+              "",
+              "var jsonData = JSON.parse(responseBody);",
+              "",
+              "postman.setGlobalVariable(\"emergency_id\", jsonData.id);",
+              ""
+            ]
+          }
+        }
+      ],
+      "request": {
+        "url": {
+          "raw": "eraapi-test.brandoncodes.com/api/responseAreas/{{response_area_id}}/emergencies?access_token={{login_token}}",
+          "host": [
+            "eraapi-test",
+            "brandoncodes",
+            "com"
+          ],
+          "path": [
+            "api",
+            "responseAreas",
+            "{{response_area_id}}",
+            "emergencies"
+          ],
+          "query": [
+            {
+              "key": "access_token",
+              "value": "{{login_token}}",
+              "equals": true,
+              "description": ""
+            }
+          ],
+          "variable": []
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"type\": \"Fire\",\r\n  \"coordinates\": {\r\n    \"lat\": 1,\r\n    \"lng\": -1\r\n  },\r\n  \"location_description\": \"Description\",\r\n  \"start_datetime\": \"2018-05-22T00:35:56.286Z\",\r\n  \"responseAreaId\": {{response_area_id}}\r\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    }
+  ]
+}
