@@ -53,8 +53,7 @@
     "public": false
   },
   "Subscription": {
-    "dataSource": "db",
-    "public": false
+    "dataSource": "db"
   },
   "Admins": {
     "dataSource": "db",
