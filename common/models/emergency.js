@@ -37,7 +37,7 @@ module.exports = function(Emergency) {
             Usr.findOne({where: {id: subscriptions[i].responderId}},
               function sendAlert(err, usr) {
                 var msg = 'Emergency Event: ' + ctx.instance.type +
-                  ' https://era.brandoncodes.com/events/' + ctx.instance.id;
+                  ' https://era.brandoncodes.com/#/events/' + ctx.instance.id;
                 var Response = Emergency.app.models.EmergencyResponse;
 
                 if (err) {
